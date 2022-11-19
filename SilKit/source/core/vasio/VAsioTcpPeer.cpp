@@ -170,11 +170,11 @@ void VAsioTcpPeer::DrainAllBuffers()
 
 bool VAsioTcpPeer::IsErrorToTryAgain(const asio::error_code& ec)
 {
-    return ec == asio::error::no_descriptors
-        || ec == asio::error::no_buffer_space
-        || ec == asio::error::no_memory
-        || ec == asio::error::timed_out
-        || ec == asio::error::try_again;
+    return ec == make_error_code(asio::error::no_descriptors)
+        || ec == make_error_code(asio::error::no_buffer_space)
+        || ec == make_error_code(asio::error::no_memory)
+        || ec == make_error_code(asio::error::timed_out)
+        || ec == make_error_code(asio::error::try_again);
 }
 
 void VAsioTcpPeer::Shutdown()
